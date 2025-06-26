@@ -85,137 +85,40 @@ const MarketplaceTile: React.FC<MarketplaceTileProps> = ({ service }) => {
   };
 
   const getServiceSpecificIcon = (service: MarketplaceService) => {
-    // Map specific services to their most appropriate icons based on their function/brand
-    const serviceIconMap: Record<string, React.ReactElement> = {
-      // Payment Services
-      'Stripe': <CreditCardOutlined className="text-blue-500" />,
-      'Nuvei': <BankOutlined className="text-green-500" />,
-      'WorldPay': <DollarOutlined className="text-yellow-500" />,
-      'Payments iQ': <RocketOutlined className="text-purple-500" />,
-      'Trustly': <SafetyOutlined className="text-blue-600" />,
-      
-      // AI & Player Journey Services  
-      'Future Anthem': <RocketOutlined className="text-indigo-500" />,
-      'Optimove': <BarChartOutlined className="text-orange-500" />,
-      'Fast Track': <PlayCircleOutlined className="text-green-600" />,
-      'Smartico': <TrophyOutlined className="text-gold" />,
-      'Playtech AI': <UserOutlined className="text-purple-600" />,
-      'Promofy': <GiftOutlined className="text-pink-500" />,
-      'Simplify': <UserOutlined className="text-blue-400" />,
-      'Solitics': <ContactsOutlined className="text-teal-500" />,
-      'Medallia': <StarFilled className="text-yellow-600" />,
-      'Flows': <BarChartOutlined className="text-cyan-500" />,
-      
-      // Security & Compliance
-      'MindWay': <SecurityScanOutlined className="text-red-500" />,
-      'Greco': <AuditOutlined className="text-orange-600" />,
-      'Gamstop': <CheckCircleOutlined className="text-green-500" />,
-      'Experian': <BankOutlined className="text-blue-700" />,
-      'Jumio': <SafetyOutlined className="text-purple-500" />,
-      'Spielhaus': <CheckCircleOutlined className="text-red-600" />,
-      'Dictaoe (Spain)': <BankOutlined className="text-yellow-600" />,
-      'Bing': <SecurityScanOutlined className="text-blue-500" />,
-      'LocationSmart': <SecurityScanOutlined className="text-green-600" />,
-      'GeoComply': <CheckCircleOutlined className="text-blue-600" />,
-      
-      // CRM & Customer Management
-      'Salesforce': <ContactsOutlined className="text-blue-500" />,
-      'Xtremepush': <CustomerServiceOutlined className="text-purple-500" />,
-      'MS Dynamics': <UserOutlined className="text-blue-600" />,
-      'Zendesk': <CustomerServiceOutlined className="text-green-500" />,
-      
-      // Analytics & Reporting
-      'Gaming Analytics': <BarChartOutlined className="text-indigo-500" />,
-      'Aretonet': <BarChartOutlined className="text-teal-500" />,
-      
-      // Regulatory & Legal
-      'Lugas (Germany)': <BankOutlined className="text-red-600" />,
-      'TruNarrative': <AuditOutlined className="text-blue-500" />,
-      'Featurespace': <SecurityScanOutlined className="text-purple-600" />,
-      'FinCom.Co': <BankOutlined className="text-green-600" />,
-      
-      // Loyalty & Blockchain
-      'Trueplay Blockchain Loyalty': <HeartOutlined className="text-purple-500" />,
-      'CoinsPaid': <BlockOutlined className="text-orange-500" />,
-      
-      // Risk Management
-      'Sion Payment Risk': <SecurityScanOutlined className="text-red-500" />,
-      'Lexus Nexus': <AuditOutlined className="text-blue-700" />,
-      
-      // Game Aggregators
-      'Alea': <AppstoreOutlined className="text-purple-500" />,
-      'Spribe': <PlayCircleOutlined className="text-green-500" />,
-      'Pragmatic': <TrophyOutlined className="text-gold" />
-    };
-    
-    return serviceIconMap[service.name] || getCategoryIcon(service.category);
+    // Use consistent category-based icons for main tile display
+    return getCategoryIcon(service.category);
   };
 
-  const getServiceSpecificIconForTag = (service: MarketplaceService) => {
-    // Map specific services to their icons with white color for tag visibility
-    const serviceIconMap: Record<string, React.ReactElement> = {
-      // Payment Services
-      'Stripe': <CreditCardOutlined className="text-white" />,
-      'Nuvei': <BankOutlined className="text-white" />,
-      'WorldPay': <DollarOutlined className="text-white" />,
-      'Payments iQ': <RocketOutlined className="text-white" />,
-      'Trustly': <SafetyOutlined className="text-white" />,
+  const getCategoryIconForTag = (category: ServiceCategory) => {
+    // Use consistent category-based icons for tags with white color
+    const iconMap: Record<ServiceCategory, React.ReactElement> = {
+      // Original gaming categories
+      [ServiceCategory.SmartICOPlugins]: <RocketOutlined className="text-white" />,
+      [ServiceCategory.SEONFraudProtection]: <SafetyOutlined className="text-white" />,
+      [ServiceCategory.iGamingServers]: <PlayCircleOutlined className="text-white" />,
+      [ServiceCategory.GameTournaments]: <TrophyOutlined className="text-white" />,
+      [ServiceCategory.VirtualPitBoss]: <CrownOutlined className="text-white" />,
+      [ServiceCategory.FreeGames]: <GiftOutlined className="text-white" />,
+      [ServiceCategory.JackpotGames]: <DollarOutlined className="text-white" />,
+      [ServiceCategory.RandomPrizes]: <StarFilled className="text-white" />,
       
-      // AI & Player Journey Services  
-      'Future Anthem': <RocketOutlined className="text-white" />,
-      'Optimove': <BarChartOutlined className="text-white" />,
-      'Fast Track': <PlayCircleOutlined className="text-white" />,
-      'Smartico': <TrophyOutlined className="text-white" />,
-      'Playtech AI': <UserOutlined className="text-white" />,
-      'Promofy': <GiftOutlined className="text-white" />,
-      'Simplify': <UserOutlined className="text-white" />,
-      'Solitics': <ContactsOutlined className="text-white" />,
-      'Medallia': <StarFilled className="text-white" />,
-      'Flows': <BarChartOutlined className="text-white" />,
-      
-      // Security & Compliance
-      'MindWay': <SecurityScanOutlined className="text-white" />,
-      'Greco': <AuditOutlined className="text-white" />,
-      'Gamstop': <CheckCircleOutlined className="text-white" />,
-      'Experian': <BankOutlined className="text-white" />,
-      'Jumio': <SafetyOutlined className="text-white" />,
-      'Spielhaus': <CheckCircleOutlined className="text-white" />,
-      'Dictaoe (Spain)': <BankOutlined className="text-white" />,
-      'Bing': <SecurityScanOutlined className="text-white" />,
-      'LocationSmart': <SecurityScanOutlined className="text-white" />,
-      'GeoComply': <CheckCircleOutlined className="text-white" />,
-      
-      // CRM & Customer Management
-      'Salesforce': <ContactsOutlined className="text-white" />,
-      'Xtremepush': <CustomerServiceOutlined className="text-white" />,
-      'MS Dynamics': <UserOutlined className="text-white" />,
-      'Zendesk': <CustomerServiceOutlined className="text-white" />,
-      
-      // Analytics & Reporting
-      'Gaming Analytics': <BarChartOutlined className="text-white" />,
-      'Aretonet': <BarChartOutlined className="text-white" />,
-      
-      // Regulatory & Legal
-      'Lugas (Germany)': <BankOutlined className="text-white" />,
-      'TruNarrative': <AuditOutlined className="text-white" />,
-      'Featurespace': <SecurityScanOutlined className="text-white" />,
-      'FinCom.Co': <BankOutlined className="text-white" />,
-      
-      // Loyalty & Blockchain
-      'Trueplay Blockchain Loyalty': <HeartOutlined className="text-white" />,
-      'CoinsPaid': <BlockOutlined className="text-white" />,
-      
-      // Risk Management
-      'Sion Payment Risk': <SecurityScanOutlined className="text-white" />,
-      'Lexus Nexus': <AuditOutlined className="text-white" />,
-      
-      // Game Aggregators
-      'Alea': <AppstoreOutlined className="text-white" />,
-      'Spribe': <PlayCircleOutlined className="text-white" />,
-      'Pragmatic': <TrophyOutlined className="text-white" />
+      // Operator service categories - consistent per category
+      [ServiceCategory.DepositMethods]: <CreditCardOutlined className="text-white" />,
+      [ServiceCategory.PlayerJourneys]: <UserOutlined className="text-white" />,
+      [ServiceCategory.FraudPlayerProtection]: <SecurityScanOutlined className="text-white" />,
+      [ServiceCategory.CRM]: <ContactsOutlined className="text-white" />,
+      [ServiceCategory.AICallCentreComms]: <CustomerServiceOutlined className="text-white" />,
+      [ServiceCategory.CustomerManagement]: <UserOutlined className="text-white" />,
+      [ServiceCategory.Reporting]: <BarChartOutlined className="text-white" />,
+      [ServiceCategory.Fraud]: <AuditOutlined className="text-white" />,
+      [ServiceCategory.ComplianceAggregators]: <CheckCircleOutlined className="text-white" />,
+      [ServiceCategory.NationalRegulator]: <BankOutlined className="text-white" />,
+      [ServiceCategory.Loyalty]: <HeartOutlined className="text-white" />,
+      [ServiceCategory.CryptoBlockchain]: <BlockOutlined className="text-white" />,
+      [ServiceCategory.Risk]: <SecurityScanOutlined className="text-white" />,
+      [ServiceCategory.GameAggregator]: <AppstoreOutlined className="text-white" />
     };
-    
-    return serviceIconMap[service.name] || <PlayCircleOutlined className="text-white" />;
+    return iconMap[category] || <PlayCircleOutlined className="text-white" />;
   };
 
   const getCategoryColor = (category: ServiceCategory) => {
@@ -274,7 +177,7 @@ const MarketplaceTile: React.FC<MarketplaceTileProps> = ({ service }) => {
               </div>
               <div className="absolute top-4 right-4">
                 <Tag color={getCategoryColor(service.category)} className="mb-2 flex items-center">
-                  <span className="mr-1">{getServiceSpecificIconForTag(service)}</span>
+                  <span className="mr-1">{getCategoryIconForTag(service.category)}</span>
                   {service.category}
                 </Tag>
               </div>
